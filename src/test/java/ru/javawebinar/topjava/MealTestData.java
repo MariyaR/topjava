@@ -3,7 +3,6 @@ package ru.javawebinar.topjava;
 import ru.javawebinar.topjava.model.Meal;
 
 import java.time.Month;
-import java.util.Arrays;
 import java.util.List;
 
 import static java.time.LocalDateTime.of;
@@ -39,7 +38,7 @@ public class MealTestData {
     }
 
     public static void assertMatch(Iterable<Meal> actual, Meal... expected) {
-        assertMatch(actual, Arrays.asList(expected));
+        assertMatch(actual, List.of(expected));
     }
 
     public static void assertMatch(Iterable<Meal> actual, Iterable<Meal> expected) {
