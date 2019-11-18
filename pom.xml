@@ -25,7 +25,7 @@
         <slf4j.version>1.7.28</slf4j.version>
 
         <!--DB-->
-        <postgresql.version>42.2.8</postgresql.version>
+        <postgresql.version>42.2.5</postgresql.version>
         <!--    Tests  -->
         <junit.version>4.12</junit.version>
 
@@ -64,7 +64,7 @@
 
     <dependencies>
         <!-- Logging with SLF4J & LogBack -->
-        <dependency>
+       <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
@@ -187,6 +187,18 @@
             <version>3.13.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.13.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -204,7 +216,7 @@
         <profile>
             <id>postgres</id>
             <dependencies>
-                <dependency>
+               <dependency>
                     <groupId>org.postgresql</groupId>
                     <artifactId>postgresql</artifactId>
                     <version>${postgresql.version}</version>
