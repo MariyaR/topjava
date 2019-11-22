@@ -12,6 +12,7 @@ import ru.javawebinar.topjava.util.Util;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
@@ -65,8 +66,8 @@ public class InMemoryMealRepository implements MealRepository {
     }
 
     @Override
-    public List<Meal> getBetweenInclusive(LocalDate startDate, LocalDate endDate, int userId) {
-        return getAllFiltered(userId, meal -> Util.isBetweenInclusive(meal.getDate(), startDate, endDate));
+    public List<Meal> getBetweenInclusive(LocalDateTime startDate, LocalDateTime endDate, int userId) {
+        return getAllFiltered(userId, meal -> Util.isBetweenInclusive(meal.getDateTime(), startDate, endDate));
     }
 
     private List<Meal> getAllFiltered(int userId, Predicate<Meal> filter) {

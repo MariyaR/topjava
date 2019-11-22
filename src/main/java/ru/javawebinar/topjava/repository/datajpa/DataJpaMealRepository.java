@@ -9,6 +9,7 @@ import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.util.Util;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -37,8 +38,6 @@ public class DataJpaMealRepository implements MealRepository {
         return crudRepository.delete(id, userId) != 0;
     }
 
-
-    @Transactional
     @Override
     public Meal get(int id, int userId) {
         Meal meal = crudRepository.findById(id).orElse(null);
@@ -51,9 +50,7 @@ public class DataJpaMealRepository implements MealRepository {
     }
 
     @Override
-    public List<Meal> getBetweenInclusive(LocalDate startDate, LocalDate endDate, int userId) {
-        return crudRepository.findAllbyUser(userId).stream()
-                .filter(meal -> Util.isBetweenInclusive(meal.getDateTime().toLocalDate(), startDate, endDate))
-                .collect(Collectors.toList());
+    public List<Meal> getBetweenInclusive(LocalDateTime startDateTime, LocalDateTime endDateTime, int userId) {
+        return crudRepository.getBetweenInclusive(startDateTime, endDateTime, userId);
     }
 }

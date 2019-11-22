@@ -2,6 +2,6 @@ package ru.javawebinar.topjava.service;
 
 import org.springframework.test.context.ActiveProfiles;
 
-@ActiveProfiles(profiles ={"jpa, datajpa", "datajpa"})
+@ActiveProfiles(profiles ={"datajpa"})
 public class JPADATAUserServiceTest extends AbstractUserServiceTest {
 }
