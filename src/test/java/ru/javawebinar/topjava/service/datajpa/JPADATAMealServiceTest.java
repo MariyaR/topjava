@@ -5,5 +5,4 @@ import ru.javawebinar.topjava.service.AbstractMealServiceTest;
 
 @ActiveProfiles(profiles ={"datajpa"})
 public class JPADATAMealServiceTest extends AbstractMealServiceTest {
-
 }
