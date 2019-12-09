@@ -1,10 +1,15 @@
 package ru.javawebinar.topjava.repository;
 
+import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import ru.javawebinar.topjava.model.Meal;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+
+import static ru.javawebinar.topjava.util.DateTimeUtil.getEndExclusive;
+import static ru.javawebinar.topjava.util.DateTimeUtil.getStartInclusive;
 
 public interface MealRepository {
     // null if updated meal do not belong to userId
