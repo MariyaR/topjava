@@ -25,5 +25,14 @@ public interface MealRepository {
     List<Meal> getAll(int userId);
 
     // ORDERED dateTime desc
-    List<Meal> getBetweenInclusive(@Nullable LocalDate startDate, @Nullable LocalDate endDate, int userId);
+    default List<Meal> getBetweenInclusive(@Nullable LocalDate startDate, @Nullable LocalDate endDate, int userId) {
+        return getBetweenInclusive(getStartInclusive(startDate), getEndExclusive(endDate), userId);
+    }
+
+    // ORDERED dateTime desc
+    List<Meal> getBetweenInclusive(@NonNull LocalDateTime startDate, @NonNull LocalDateTime endDate, int userId);
+
+    default Meal getWithUser(int id, int userId) {
+        throw new UnsupportedOperationException();
+    }
 }
