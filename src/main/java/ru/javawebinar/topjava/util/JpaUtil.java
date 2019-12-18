@@ -1,10 +1,13 @@
-package ru.javawebinar.topjava.repository;
+package ru.javawebinar.topjava.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 
 public class JpaUtil {
 
