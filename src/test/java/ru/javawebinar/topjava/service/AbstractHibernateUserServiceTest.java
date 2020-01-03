@@ -15,14 +15,10 @@ import java.util.Set;
 public abstract class AbstractHibernateUserServiceTest extends AbstractUserServiceTest {
 
     @Autowired
-    private CacheManager cacheManager;
-
-    @Autowired
     protected JpaUtil jpaUtil;
 
     @Before
     public void setUp() throws Exception {
-        cacheManager.getCache("users").clear();
         jpaUtil.clear2ndLevelHibernateCache();
     }
 
