@@ -5,5 +5,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring:message code="app.title"/></title>
+    <c:set var="url">${pageContext.request.requestURL}</c:set>
     <link rel="stylesheet" href="resources/css/style.css">
 </head>

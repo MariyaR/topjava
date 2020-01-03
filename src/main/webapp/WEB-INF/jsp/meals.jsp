@@ -3,21 +3,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fnc" uri="http://topjava.javawebinar.ru/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <head>
-    <c:set var="url">${pageContext.request.requestURL}</c:set>
     <base href="${fn:substring(url, 0, fn:length(url) - fn:length(pageContext.request.requestURI))}${pageContext.request.contextPath}/" />
     <title>Meals</title>
     <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
 <section>
-    <h3><a href="">Home</a></h3>
+    <h3><a href=""><spring:message code="app.home"/></a></h3>
     <hr/>
-    <h2>Meals</h2>
+    <h2><spring:message code="meal.title"/></h2>
     <form method="get" action="meals/filter">
         <dl>
             <dt>From Date:</dt>
