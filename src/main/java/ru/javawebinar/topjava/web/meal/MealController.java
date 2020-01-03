@@ -29,7 +29,7 @@ public class MealController extends AbstractMealController {
 
     @GetMapping(value = "/delete/{id}")
     public String deleteMeal(@PathVariable int id) {
-        super.delete(id);
+        delete(id);
         return "redirect:/meals";
     }
 
@@ -46,16 +46,16 @@ public class MealController extends AbstractMealController {
     }
 
     @PostMapping(value = "/update/save")
-    public String save(HttpServletRequest request, Model model) {
+    public String save(HttpServletRequest request) {
         Meal meal = new Meal(
                 LocalDateTime.parse(request.getParameter("dateTime")),
                 request.getParameter("description"),
                 Integer.parseInt(request.getParameter("calories")));
 
         if (StringUtils.isEmpty(request.getParameter("id"))) {
-            super.create(meal);
+            create(meal);
         } else {
-            super.update(meal, getId(request));
+            update(meal, getId(request));
         }
         return "redirect:/meals";
     }
