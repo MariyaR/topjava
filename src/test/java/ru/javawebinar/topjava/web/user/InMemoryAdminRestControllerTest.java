@@ -16,14 +16,14 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.javawebinar.topjava.UserTestData.USER_ID;
 
-public class InMemoryAdminRestControllerTest {
+class InMemoryAdminRestControllerTest {
     private static final Logger log = LoggerFactory.getLogger(UserTestData.InMemoryAdminRestControllerTest.class);
 
     private static ConfigurableApplicationContext appCtx;
     private static AdminRestController controller;
 
-    @BeforeClass
-    public static void beforeClass() {
+    @BeforeAll
+    static void beforeClass() {
         appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/inmemory.xml");
         log.info("\n{}\n", Arrays.toString(appCtx.getBeanDefinitionNames()));
         controller = appCtx.getBean(AdminRestController.class);
@@ -36,8 +36,8 @@ public class InMemoryAdminRestControllerTest {
 //        appCtx.close();
     }
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    void setUp() throws Exception {
         // re-initialize
         InMemoryUserRepository repository = appCtx.getBean(InMemoryUserRepository.class);
         repository.init();
@@ -49,8 +49,8 @@ public class InMemoryAdminRestControllerTest {
         assertThrows(NotFoundException.class, () -> controller.get(USER_ID));
     }
 
-    @Test(expected = NotFoundException.class)
-    public void deleteNotFound() throws Exception {
-        controller.delete(10);
+    @Test
+    void deleteNotFound() throws Exception {
+        assertThrows(NotFoundException.class, () -> controller.delete(10));
     }
 }
