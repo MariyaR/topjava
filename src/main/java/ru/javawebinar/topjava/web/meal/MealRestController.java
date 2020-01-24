@@ -49,8 +49,8 @@ public class MealRestController extends AbstractMealController{
     }
 
     @GetMapping("")
-    public List<Meal> getAllMeals() {
-        return service.getAll(SecurityUtil.authUserId());
+    public List<MealTo> getAllMeals() {
+        return super.getAll();
     }
 
 

@@ -2,16 +2,23 @@ package ru.javawebinar.topjava.web;
 
 import org.assertj.core.matcher.AssertionMatcher;
 import org.junit.jupiter.api.Test;
+import org.springframework.lang.Nullable;
+import org.springframework.test.web.servlet.MvcResult;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.model.User;
+import ru.javawebinar.topjava.to.MealTo;
+import ru.javawebinar.topjava.util.MealsUtil;
 
+import java.time.LocalTime;
 import java.util.List;
 
+import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static ru.javawebinar.topjava.MealTestData.*;
 import static ru.javawebinar.topjava.UserTestData.*;
+import static ru.javawebinar.topjava.util.MealsUtil.getFilteredTos;
 
 class RootControllerTest extends AbstractControllerTest {
 
@@ -34,18 +41,17 @@ class RootControllerTest extends AbstractControllerTest {
 
     @Test
     public void getMeals() throws Exception {
-        mockMvc.perform(get("/meals"))
+       // MvcResult result =
+                mockMvc.perform(get("/meals"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("meals"))
                 .andExpect(forwardedUrl("/WEB-INF/jsp/meals.jsp"))
-                .andExpect(model().attribute("meals",
-                        new AssertionMatcher<List<Meal>>() {
-                            @Override
-                            public void assertion(List<Meal> actual) throws AssertionError {
-                                assertMatch(actual, MEALS);
-                            }
-                        }
-                ));
+               // .andReturn();
+                .andExpect(model().attribute("meals", MealsUtil.getTos(MEALS, SecurityUtil.authUserCaloriesPerDay())));
+       // List<MealTo> meals = (List<MealTo>) result.getModelAndView().getModel().get("meals");
+
+       // assertMatchTo(meals, MealsUtil.getTos(MEALS, SecurityUtil.authUserCaloriesPerDay()));
+
     }
 }
