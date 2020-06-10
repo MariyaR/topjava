@@ -12,6 +12,7 @@ function makeEditable(ctx) {
 }
 
 function add() {
+    $("#modalTitle").html(i18n["addTitle"]);
     form.find(":input").val("");
     $("#editRow").modal();
 }
@@ -63,10 +64,10 @@ function closeNoty() {
     }
 }
 
-function successNoty(text) {
+function successNoty(key) {
     closeNoty();
     new Noty({
-        text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + text,
+        text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + i18n[key],
         type: 'success',
         layout: "bottomRight",
         timeout: 1000
