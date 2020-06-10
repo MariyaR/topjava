@@ -39,7 +39,7 @@ class ProfileRestControllerTest extends AbstractControllerTest {
 
     @Test
     void update() throws Exception {
-        User updated = UserTestData.getUpdated();
+        UserTo updatedTo = new UserTo(null, "newName", "newemail@ya.ru", "newPassword", 1500);
         mockMvc.perform(MockMvcRequestBuilders.put(REST_URL).contentType(MediaType.APPLICATION_JSON)
                 .with(userHttpBasic(USER))
                 .content(JsonUtil.writeValue(updatedTo)))
