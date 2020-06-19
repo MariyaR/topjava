@@ -10,6 +10,12 @@ import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.inmemory.InMemoryUserRepository;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 import ru.javawebinar.topjava.web.user.AdminRestController;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static ru.javawebinar.topjava.TestUtil.readFromJsonMvcResult;
+import static ru.javawebinar.topjava.TestUtil.readListFromJsonMvcResult;
+import static ru.javawebinar.topjava.model.AbstractBaseEntity.START_SEQ;
+
 
 import java.util.*;
 
