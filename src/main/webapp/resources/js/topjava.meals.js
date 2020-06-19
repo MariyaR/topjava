@@ -1,22 +1,22 @@
+var mealAjaxUrl = "ajax/profile/meals/";
+
 function updateFilteredTable() {
     $.ajax({
         type: "GET",
-        url: "ajax/profile/meals/filter",
+        url: mealAjaxUrl + "filter",
         data: $("#filter").serialize()
     }).done(updateTableByData);
 }
 
 function clearFilter() {
     $("#filter")[0].reset();
-    $.get("ajax/profile/meals/", updateTableByData);
+    $.get(mealAjaxUrl, updateTableByData);
 }
 
 $(function () {
     makeEditable({
-        ajaxUrl: "ajax/profile/meals/",
-        datatableApi: $("#datatable").DataTable({
-            "paging": false,
-            "info": true,
+        ajaxUrl: mealAjaxUrl,
+        datatableOpts: {
             "columns": [
                 {
                     "data": "dateTime"
@@ -28,11 +28,13 @@ $(function () {
                     "data": "calories"
                 },
                 {
-                    "defaultContent": "Edit",
+                    "render": renderEditBtn,
+                    "defaultContent": "",
                     "orderable": false
                 },
                 {
-                    "defaultContent": "Delete",
+                    "render": renderDeleteBtn,
+                    "defaultContent": "",
                     "orderable": false
                 }
             ],
@@ -41,8 +43,11 @@ $(function () {
                     0,
                     "desc"
                 ]
-            ]
-        }),
+            ],
+            "createdRow": function (row, data, dataIndex) {
+                $(row).attr("data-mealExcess", data.excess);
+            },
+        },
         updateTable: updateFilteredTable
     });
 });
