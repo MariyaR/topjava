@@ -1,6 +1,6 @@
 package ru.javawebinar.topjava;
-
-
+import org.springframework.test.web.servlet.ResultMatcher;
+import java.util.List;
 import org.junit.*;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,9 +19,6 @@ import static ru.javawebinar.topjava.model.AbstractBaseEntity.START_SEQ;
 
 import java.util.*;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static ru.javawebinar.topjava.TestUtil.readFromJsonMvcResult;
-import static ru.javawebinar.topjava.TestUtil.readListFromJsonMvcResult;
 import static ru.javawebinar.topjava.model.AbstractBaseEntity.START_SEQ;
 
 public class UserTestData {
@@ -99,4 +96,6 @@ public class UserTestData {
     public static ResultMatcher contentJson(User expected) {
         return result -> assertMatch(readFromJsonMvcResult(result, User.class), expected);
     }
+
+    public static TestMatchers<User> USER_MATCHERS = TestMatchers.useFieldsComparator(User.class, "registered", "meals", "password");
 }

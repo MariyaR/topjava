@@ -14,7 +14,7 @@ class JsonUtilTest {
         String json = JsonUtil.writeValue(ADMIN_MEAL1);
         System.out.println(json);
         Meal meal = JsonUtil.readValue(json, Meal.class);
-        assertMatch(meal, ADMIN_MEAL1);
+        MEAL_MATCHERS.assertMatch(meal, ADMIN_MEAL1);
     }
 
     @Test
