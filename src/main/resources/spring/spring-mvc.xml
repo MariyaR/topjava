@@ -62,7 +62,10 @@
           p:cacheSeconds="5"
           p:defaultEncoding="UTF-8">
         <property name="basenames" value="file:///#{systemEnvironment['TOPJAVA_ROOT']}/config/messages/app"/>
-        <!--<property name="fallbackToSystemLocale" value="false"/>-->
+        <property name="fallbackToSystemLocale" value="false"/>
     </bean>
+    <mvc:interceptors>
+        <bean class="ru.javawebinar.topjava.web.interceptor.ModelInterceptor"/>
+    </mvc:interceptors>
 
 </beans>
